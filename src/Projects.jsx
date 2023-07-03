@@ -19,18 +19,19 @@ const Projects = () => {
 
   return (
     <>
-    <Stack sx={{ display: "flex", alignItems: "center", mt: "2ch", width: "100%" }}>
-      <Stack direction="row"> 
-        <Card sx={{ width: "800px", boxShadow: 0, backgroundColor: "red", ml: "120px" }}>
+    <Stack sx={{ alignItems: "center", mt: "2ch", width: "100%" }}>
+      <Stack direction="row" sx={{ justifyContent: "center" }}> 
+        <Box sx={{ width: "9%" }} />
+        <Card sx={{ width: "55%", boxShadow: 0, backgroundColor: "red" }}>
           <CardMedia sx={{ m: "2ch", width: "calc(100% - 4ch)" }}
             component="img"
             alt="project preview"
             image="2359preview.png"
           />
         </Card>
-        <Stack spacing={2} sx={{ mt: 2 }}>
+        <Stack spacing={2} sx={{ mt: 2, width: "9%" }}>
           {hello.map((item, index) => (
-            <Box sx={{ width: "120px", height: "40px", boxShadow: 0, borderRadius: "0 6px 6px 0", justifySelf: "left", 
+            <Box sx={{ width: "100%", height: "10%", boxShadow: 0, borderRadius: "0 6px 6px 0", justifySelf: "left", 
               display: "flex", backgroundColor: "red" }}>
               <Typography sx={{ alignSelf: "center", ml: "1ch" }}> {item} </Typography>
             </Box>
