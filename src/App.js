@@ -16,7 +16,7 @@ const App = () => {
     SKILLS: 2
   }
 
-  const [activePage, setActivePage] = React.useState(MainPages.HOME);
+  const [activePage, setActivePage] = React.useState(MainPages.PROJECTS);
 
   return (
     <>
