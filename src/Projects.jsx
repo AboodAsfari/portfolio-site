@@ -1,17 +1,10 @@
 import React from "react";
 import { 
   Box, 
-  Button, 
-  Card, 
-  CardActions, 
-  CardContent, 
-  CardMedia, 
-  Icon, 
   IconButton, 
   Pagination, 
   PaginationItem, 
   Stack, 
-  ThemeProvider, 
   Typography 
 } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';

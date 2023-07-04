@@ -27,9 +27,9 @@ const App = () => {
       <AppBar position="sticky" component="nav" sx={{ boxShadow: 0 }}>
           <Toolbar>
             <Stack spacing={1} direction={"row"} sx={{ justifyContent: "end", width: "100%" }}>
-              <Button variant="text" disableRipple sx={{ fontSize: "18px", textTransform: "none", fontWeight: 700, "&:hover": { backgroundColor: "background.default", textDecoration: "underline", textDecorationThickness: "3px" } }} onClick={() => setActivePage(MainPages.HOME)}> Home </Button> 
-              <Button variant="text" disableRipple sx={{ fontSize: "18px", textTransform: "none", fontWeight: 700, "&:hover": { backgroundColor: "background.default", textDecoration: "underline", textDecorationThickness: "3px" } }} onClick={() => setActivePage(MainPages.PROJECTS)}> Projects </Button> 
-              <Button variant="text" disableRipple sx={{ fontSize: "18px", textTransform: "none", fontWeight: 700, "&:hover": { backgroundColor: "background.default", textDecoration: "underline", textDecorationThickness: "3px" } }} onClick={() => setActivePage(MainPages.SKILLS)}> Skills </Button> 
+              <NavButton action={() => setActivePage(MainPages.HOME)} label="Home" />
+              <NavButton action={() => setActivePage(MainPages.PROJECTS)} label="Projects" />
+              <NavButton action={() => setActivePage(MainPages.SKILLS)} label="Skills" />
             </Stack>
           </Toolbar>
       </AppBar>
@@ -37,6 +37,19 @@ const App = () => {
       {activePage === MainPages.PROJECTS && <Projects />}
       {activePage === MainPages.SKILLS && <Skills />}
     </ThemeProvider>
+  );
+};
+
+const NavButton = (props) => {
+  const {
+    action,
+    label,
+  } = props;
+
+  return (
+    <Button variant="text" disableRipple sx={{ fontSize: "18px", textTransform: "none", fontWeight: 700, 
+      "&:hover": { backgroundColor: "background.default", textDecoration: "underline", textDecorationThickness: "3px" } }} 
+      onClick={action}> {label} </Button> 
   );
 };
 
