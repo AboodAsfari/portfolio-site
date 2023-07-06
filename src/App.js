@@ -23,6 +23,7 @@ const App = () => {
   }
 
   const [activePage, setActivePage] = React.useState(MainPages.HOME);
+  const [transitioning, setTransitioning] = React.useState(false);
   const [nameSize, setNameSize] = React.useState(104);
   const [nameTopOffset, setNameTopOffset] = React.useState(30);
   const nameGrow = React.useRef(true);
@@ -33,6 +34,7 @@ const App = () => {
       if (oldSize === 60 && queuedTransition.current !== null) {
         queuedTransition.current();
         queuedTransition.current = null;
+        setTransitioning(false);
       }
       
       if (!nameGrow.current && oldSize > 24) return oldSize - 4;
@@ -56,6 +58,7 @@ const App = () => {
   const openProjects = () => {
     if (activePage !== MainPages.HOME) setActivePage(MainPages.PROJECTS);
     else {
+      setTransitioning(true);
       queuedTransition.current = () => setActivePage(MainPages.PROJECTS); 
       nameGrow.current = false;
     }
@@ -83,7 +86,11 @@ const App = () => {
             </Stack>
           </Toolbar>
       </AppBar>
-      {activePage === MainPages.HOME && <Home />}
+      <Fade in={activePage === MainPages.HOME}>
+        <Box>
+          {activePage === MainPages.HOME && <Home showContent={!transitioning} />}
+        </Box>
+      </Fade>
       <Fade in={activePage === MainPages.PROJECTS}>
         <Box>
           <Projects />
