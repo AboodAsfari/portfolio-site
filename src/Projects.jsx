@@ -22,11 +22,11 @@ const Projects = () => {
     <Stack sx={{ alignItems: "center", mt: "2ch", width: "100%" }}>
       <Stack direction="row" sx={{ justifyContent: "center" }}> 
         <Box sx={{ width: "9%" }} />
-        <Box component="img" src={projects[selectedProject].projectName + "/header.png"} sx={{ width: "55%", height: "55%", borderRadius: "6px", border: "solid 1.5ch", borderColor: "accent.main" }} /> 
+        <Box component="img" src={projects[selectedProject].projectName + "/header.png"} sx={{ width: "55%", height: "55%", borderRadius: "6px", border: "solid 1.5ch", borderColor: "text.secondary" }} /> 
         <Stack spacing={2} sx={{ mt: 2, width: "9%" }}>
           {projects[selectedProject].skills.map((item, index) => (
             <Box sx={{ minWidth: "120px", width: "100%", height: "10%", boxShadow: 0, borderRadius: "0 6px 6px 0", justifySelf: "left", 
-              display: "flex", backgroundColor: "accent.main" }} key={item}>
+              display: "flex", backgroundColor: "text.secondary" }} key={item}>
               <Typography sx={{ alignSelf: "center", ml: "1ch", fontWeight: 600, color: "white" }}> {item} </Typography>
             </Box>
           ))}
@@ -51,13 +51,13 @@ const Projects = () => {
       <Stack direction="row" spacing={2} sx={{ mt: "2ch" }}>
         {projects.map((item, index) => (
           <IconButton color="red" key={item.projectName} onClick={() => setSelectedProject(index)}
-            sx={{ backgroundColor: selectedProject === index ? "accent.secondary" : "#A19882", 
-            "&:hover": { backgroundColor: selectedProject === index ? "accent.secondary" : "#c4b99f" } }} />
+            sx={{ backgroundColor: selectedProject === index ? "text.main" : "#A19882", 
+            "&:hover": { backgroundColor: selectedProject === index ? "text.main" : "#c4b99f" } }} />
         ))}
       </Stack>
       {projects[selectedProject].previewCount > 0 ? 
         <Stack direction="row" sx={{ mx: "10%", mt: "5ch" }}> 
-          <Typography sx={{ fontWeight: 600, width: "40%", ml: "calc(10% - 3ch)" }}> {projects[selectedProject].description} </Typography>
+          <Typography sx={{ fontWeight: 600, width: "40%", ml: "calc(10% - 3ch)", color: "text.accent" }}> {projects[selectedProject].description} </Typography>
           
           <Stack spacing={2} sx={{ ml: "6ch", width: "40%", height: "40%", alignItems: "center" }}>
             <Box component="img" src={projects[selectedProject].projectName + "/example" + examplePage + ".png"} sx={{ width: "100%", height: "100%", borderRadius: "6px" }} /> 
@@ -65,7 +65,7 @@ const Projects = () => {
               <Pagination page={examplePage}
                 count={projects[selectedProject].previewCount}
                 renderItem={(item) => (
-                  <PaginationItem sx={{ color: "accent.secondary", fontWeight: 600 }} 
+                  <PaginationItem sx={{ color: "text.main", fontWeight: 600 }} 
                     slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
                     {...item} onClick={() => setExamplePage(item.page)}
                   />
@@ -74,7 +74,7 @@ const Projects = () => {
             </Stack>
           </Stack>
         </Stack> :
-        <Typography sx={{ fontWeight: 600, width: "40%", textAlign: "center", mt: "5ch" }}> {projects[selectedProject].description} </Typography>
+        <Typography sx={{ fontWeight: 600, width: "40%", textAlign: "center", mt: "5ch", color: "text.accent" }}> {projects[selectedProject].description} </Typography>
       }
     </Stack>
     </>
