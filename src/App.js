@@ -31,7 +31,7 @@ const App = () => {
 
   const updateName = React.useCallback(() => {
     setNameSize(oldSize => { 
-      if (oldSize === 60 && queuedTransition.current !== null) {
+      if (((oldSize === 60 && !nameGrow.current) || (oldSize === 100 && nameGrow.current)) && queuedTransition.current !== null) {
         queuedTransition.current();
         queuedTransition.current = null;
         setTransitioning(false);
@@ -67,7 +67,8 @@ const App = () => {
   const openHome = () => {
     if (activePage === MainPages.HOME) return;
     else {
-      setActivePage(MainPages.HOME); 
+      setTransitioning(true);
+      queuedTransition.current = () => setActivePage(MainPages.HOME); 
       nameGrow.current = true;
     }
   };
@@ -93,7 +94,7 @@ const App = () => {
       </Fade>
       <Fade in={activePage === MainPages.PROJECTS}>
         <Box>
-          <Projects />
+          {activePage === MainPages.PROJECTS && <Projects showContent={!transitioning} />}
         </Box>
       </Fade>
       {activePage === MainPages.SKILLS && <Skills />}
