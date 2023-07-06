@@ -14,7 +14,6 @@ import portfolioTheme from "./PortfolioTheme";
 import Home from "./Home";
 import Projects from "./Projects";
 import Skills from "./Skills";
-import { wait } from "@testing-library/user-event/dist/utils";
 
 const App = () => {
   const MainPages = {
@@ -29,27 +28,31 @@ const App = () => {
   const nameGrow = React.useRef(true);
   const queuedTransition = React.useRef(null);
 
-  React.useEffect(() => {
-    setInterval(() => {
-      setNameSize(oldSize => { 
-        if (oldSize === 60 && queuedTransition.current !== null) {
-          queuedTransition.current();
-          queuedTransition.current = null;
-        }
-        
-        if (!nameGrow.current && oldSize > 24) return oldSize - 2;
-        else if (nameGrow.current && oldSize < 104) return oldSize + 2; 
-        else return oldSize; 
-      });
+  const updateName = React.useCallback(() => {
+    setNameSize(oldSize => { 
+      if (oldSize === 60 && queuedTransition.current !== null) {
+        queuedTransition.current();
+        queuedTransition.current = null;
+      }
+      
+      if (!nameGrow.current && oldSize > 24) return oldSize - 4;
+      else if (nameGrow.current && oldSize < 104) return oldSize + 4; 
+      else return oldSize; 
+    });
 
-      setNameTopOffset(oldOffset => { 
-        if (!nameGrow.current && oldOffset > 10) return oldOffset - 0.5;
-        else if (nameGrow.current && oldOffset < 30) return oldOffset + 0.5;
-        else return oldOffset; 
-      });
-    }, 10);
+    setNameTopOffset(oldOffset => { 
+      if (!nameGrow.current && oldOffset > 10) return oldOffset - 1;
+      else if (nameGrow.current && oldOffset < 30) return oldOffset + 1;
+      else return oldOffset; 
+    });
+
+    requestAnimationFrame(updateName);
   }, []);
 
+  React.useEffect(() => {
+    requestAnimationFrame(updateName);
+  }, [updateName]);
+  
   const openProjects = () => {
     if (activePage !== MainPages.HOME) setActivePage(MainPages.PROJECTS);
     else {
@@ -83,7 +86,7 @@ const App = () => {
       {activePage === MainPages.HOME && <Home />}
       <Fade in={activePage === MainPages.PROJECTS}>
         <Box>
-          { <Projects /> }
+          <Projects />
         </Box>
       </Fade>
       {activePage === MainPages.SKILLS && <Skills />}
