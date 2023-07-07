@@ -8,7 +8,7 @@ const portfolioTheme = createTheme({
         text: {
             main: "#BD542A",
             secondary: "#CC704B",
-            accent: "#675D50"
+            accent: "#675D50",
         }
     },
 
