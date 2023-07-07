@@ -20,7 +20,7 @@ const App = () => {
     HOME: 0,
     PROJECTS: 1,
     SKILLS: 2
-  }
+  };
 
   const [activePage, setActivePage] = React.useState(MainPages.HOME);
   const [transitioning, setTransitioning] = React.useState(false);

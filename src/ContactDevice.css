@@ -14,8 +14,10 @@
     background-size: 100% 4px;
     z-index: 9999999;
     pointer-events: none;
-    grid-row-start: 1;
-    grid-column-start: 1;
+}
+
+#crt{
+    overflow: hidden
 }
 
 .scanline {
