@@ -6,8 +6,7 @@ import {
   Stack, 
   Typography 
 } from "@mui/material";
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import "./ContactDevice.css";
 
 const Home = (props) => {
   const {
@@ -44,7 +43,15 @@ const Home = (props) => {
       <Box sx={{ width: "calc(45%)", height: "100%", display: "flex", justifyContent: "center" }}>
         <Stack sx={{ backgroundColor: "text.secondary", width: "360px", height: "592px", mt: "21ch", borderRadius: "6px 6px 60px 6px" }}>
           <Box sx={{ backgroundColor: "#606C5D", width: "90%", height: "40%", mx: "5%", mt: "10%", borderRadius: "6px 6px 30px 6px" }}> 
-            <Box sx={{ backgroundColor: "#B5C99A", width: "70%", height: "80%", mx: "15%", mt: "7%" }}> </Box>
+            <Box sx={{ position: "relative", backgroundColor: "#B5C99A", width: "70%", height: "80%", mx: "15%", mt: "7%" }}>
+              <Box class="scanline" />
+              <Box id={"crt"} sx={{ width: "100%", height: "100%" }}> 
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <img alt="POOP" src="githublogo.png" width="60%" height="auto" style={{ marginTop: "12%"}} />
+                </Box>
+                <Typography sx={{ ml: "0.7ch", color: "#00000095", fontWeight: 600, mt: "0.3ch" }}> A - Open &nbsp; &nbsp; &nbsp;&nbsp; B - Also Open </Typography>
+              </Box>
+            </Box>
           </Box>
           <Stack direction="row" sx={{ mt: "10ch", ml: "10%" }}>
             <Stack sx={{ alignItems: "center" }}>
