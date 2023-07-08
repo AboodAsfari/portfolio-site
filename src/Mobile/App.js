@@ -27,7 +27,7 @@ const App = () => {
   return (
     <ThemeProvider theme={portfolioTheme}>
       <CssBaseline /> 
-      <AppBar position="sticky" component="nav" sx={{ boxShadow: 0, p: 0 }}>
+      <AppBar position="sticky" component="nav" sx={{ boxShadow: 0, p: 0, zIndex: 99999999 }}>
           <Toolbar sx={{ display: "flex", p: 0 }}>
             <Typography sx={{ fontSize: "25px", fontWeight: 700, color: "text.main", ml: "20px" }}> Abdulrahman Asfari </Typography>
             <Box sx={{ flexGrow: 1 }} />
