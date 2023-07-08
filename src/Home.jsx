@@ -22,8 +22,11 @@ const Home = (props) => {
 
   const deviceCRTRef = React.useRef(null);
   const [activeContact, setActiveContact] = React.useState(ContactMethods.GITHUB.value);
+  const [invertDeviceSlide, setInvertDeviceSlide] = React.useState(false);
 
   const nextContact = () => {
+    setInvertDeviceSlide(true);
+    console.log(invertDeviceSlide);
     setActiveContact(prev => {
       if (prev >= 2) return 0;
       else return prev + 1;
@@ -31,11 +34,17 @@ const Home = (props) => {
   };
 
   const prevContact = () => {
+    setInvertDeviceSlide(false);
     setActiveContact(prev => {
       if (prev <= 0) return 2;
       else return prev - 1;
     });
   };
+
+  const getSlideDir = (condition) => {
+    if (condition ? !invertDeviceSlide : invertDeviceSlide) return "right";
+    else return "left";
+  }
 
   return (
     <Stack direction="row" sx={{ width: "100%", height: "100%" }}>
@@ -72,13 +81,13 @@ const Home = (props) => {
                 <Box className="scanline" />
                 <Box id={"crt"} sx={{ width: "100%", height: "100%" }} ref={deviceCRTRef}> 
                     <Box sx={{ display: "flex", justifyContent: "center", position: "relative" }}>
-                      <Slide in={activeContact === ContactMethods.GITHUB.value} direction={activeContact === ContactMethods.GITHUB.value ? "right" : "left"} container={deviceCRTRef.current}>
+                      <Slide in={activeContact === ContactMethods.GITHUB.value} direction={getSlideDir(activeContact === ContactMethods.GITHUB.value)} container={deviceCRTRef.current}>
                         <img alt="Github Logo" src="githublogo.png" width="48%" height="auto" style={{ marginTop: "18%", position: "absolute" }} />
                       </Slide>
-                      <Slide in={activeContact === ContactMethods.LINKEDIN.value} direction={activeContact === ContactMethods.LINKEDIN.value ? "right" : "left"} container={deviceCRTRef.current}>
+                      <Slide in={activeContact === ContactMethods.LINKEDIN.value} direction={getSlideDir(activeContact === ContactMethods.LINKEDIN.value)} container={deviceCRTRef.current}>
                         <img alt="LinkedIn Logo" src="linkedinlogo.png" width="60%" height="auto" style={{ marginTop: "12%", position: "absolute" }} />
                       </Slide>
-                      <Slide in={activeContact === ContactMethods.EMAIL.value} direction={activeContact === ContactMethods.EMAIL.value ? "right" : "left"} container={deviceCRTRef.current}>
+                      <Slide in={activeContact === ContactMethods.EMAIL.value} direction={getSlideDir(activeContact === ContactMethods.EMAIL.value)} container={deviceCRTRef.current}>
                         <img alt="LinkedIn Logo" src="emaillogo.png" width="48%" height="auto" style={{ marginTop: "18%", position: "absolute" }} />
                       </Slide>
                     </Box>
