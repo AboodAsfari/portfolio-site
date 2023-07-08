@@ -40,7 +40,7 @@ const Home = (props) => {
 
   const getSlideDir = (condition) => {
     if (condition ? !invertDeviceSlide : invertDeviceSlide) return "right";
-    else return "left";
+    return "left";
   }
 
   return (

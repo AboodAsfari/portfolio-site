@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import projects from "./Project";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LanguageIcon from '@mui/icons-material/Language';
@@ -21,19 +23,44 @@ const Projects = (props) => {
 
   const [selectedProject, setSelectedProject] = React.useState(0);
   const [examplePage, setExamplePage] = React.useState(1);
+  const [carouselHover, setCarouselHover] = React.useState(false);
 
   projects.forEach((item, index) => {
     const imageElement = new Image();
     imageElement.src = item.projectName + "/header.png";  
   })
+
+  const getArrowColor = (isHover) => {
+    if (isHover) {
+      if (selectedProject === 0) return "#bdbdbd";
+      return "#525252";
+    } else {
+      if (selectedProject === 0) return "white";
+      return "black";
+    }
+  }
+
+  const nextProject = () => {
+    setSelectedProject(old => old + 1);
+  };
+
+  const prevProject = () => {
+    setSelectedProject(old => old - 1);
+  };
   
   return (
     <>
     <Stack sx={{ alignItems: "center", mt: "2ch", width: "100%" }}>
       <Slide in={showContent} direction="left" timeout={{ enter: 300, exit: 300 }}>
-        <Stack direction="row" sx={{ justifyContent: "center" }}> 
+        <Stack direction="row" sx={{ justifyContent: "center", position: "relative" }}> 
           <Box sx={{ width: "9%" }} />
-          <Box component="img" src={projects[selectedProject].projectName + "/header.png"} sx={{ width: "55%", height: "55%", borderRadius: "6px", border: "solid 1.5ch", borderColor: "text.secondary" }} /> 
+          
+          <Box component="img" onMouseEnter={() => setCarouselHover(true)} onMouseLeave={() => setCarouselHover(false)} src={projects[selectedProject].projectName + "/header.png"} sx={{ width: "55%", height: "55%", borderRadius: "6px", border: "solid 1.5ch", borderColor: "text.secondary" }} /> 
+          { carouselHover && <>
+            {selectedProject > 0 && <ArrowCircleLeftIcon onClick={prevProject} onMouseEnter={() => setCarouselHover(true)} sx={{ position: "absolute", top: "43.7%", left: "25%", fontSize: "50px", cursor: "pointer", color: getArrowColor(false), "&:hover": { color: getArrowColor(true) } }}/>}
+            {selectedProject < projects.length - 1 && <ArrowCircleRightIcon onClick={nextProject} onMouseEnter={() => setCarouselHover(true)} sx={{ position: "absolute", top: "43.7%", right: "25%", fontSize: "50px", cursor: "pointer", color: getArrowColor(false), "&:hover": { color: getArrowColor(true) } }}/>}
+          </>}
+
           <Stack spacing={2} sx={{ mt: 2, width: "9%" }}>
             {projects[selectedProject].skills.map((item, index) => (
               <Box sx={{ minWidth: "120px", width: "100%", height: "10%", boxShadow: 0, borderRadius: "0 6px 6px 0", justifySelf: "left", 
