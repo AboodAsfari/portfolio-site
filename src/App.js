@@ -90,7 +90,8 @@ const App = () => {
             <Stack spacing={1} direction={"row"} sx={{ justifyContent: "end" }}>
               <NavButton action={openHome} label="Home" />
               <NavButton action={openProjects} label="Projects" />
-              <NavButton action={() => setActivePage(MainPages.SKILLS)} label="Skills" />
+              {/* <NavButton action={() => setActivePage(MainPages.SKILLS)} label="Skills" /> */}
+              <NavButton label="Skills" />
             </Stack>
           </Toolbar>
       </AppBar>

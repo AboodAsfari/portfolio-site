@@ -56,7 +56,6 @@ const Projects = (props) => {
       <Slide in={showContent} direction="left" timeout={{ enter: 300, exit: 300 }}>
         <Stack direction="row" sx={{ justifyContent: "center", position: "relative" }}> 
           <Box sx={{ width: "9%" }} />
-          
           <Box component="img" onMouseEnter={() => setCarouselHover(true)} onMouseLeave={() => setCarouselHover(false)} src={projects[selectedProject].projectName + "/header.png"} sx={{ width: "55%", height: "55%", borderRadius: "6px", border: "solid 1.5ch", borderColor: "text.secondary" }} /> 
           { carouselHover && <>
             {selectedProject > 0 && <ArrowCircleLeftIcon onClick={prevProject} onMouseEnter={() => setCarouselHover(true)} sx={{ position: "absolute", top: "43.7%", left: "25%", fontSize: "50px", cursor: "pointer", color: getArrowColor(false), "&:hover": { color: getArrowColor(true) } }}/>}
