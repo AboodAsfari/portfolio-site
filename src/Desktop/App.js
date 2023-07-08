@@ -10,7 +10,7 @@ import {
   Toolbar,
   Typography, 
 } from "@mui/material";
-import portfolioTheme from "./PortfolioTheme";
+import portfolioTheme from "../PortfolioTheme";
 import Home from "./Home";
 import Projects from "./Projects";
 import Skills from "./Skills";

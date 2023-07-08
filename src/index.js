@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import DesktopApp from './Desktop/App';
+import MobileApp from './Mobile/App';
+import { isMobile } from 'react-device-detect';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <App />
+  isMobile ? <MobileApp /> : <DesktopApp />
 );
