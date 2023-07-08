@@ -56,10 +56,16 @@ const Projects = (props) => {
       <Slide in={showContent} direction="left" timeout={{ enter: 300, exit: 300 }}>
         <Stack direction="row" sx={{ justifyContent: "center", position: "relative" }}> 
           <Box sx={{ width: "9%" }} />
-          <Box component="img" onMouseEnter={() => setCarouselHover(true)} onMouseLeave={() => setCarouselHover(false)} src={projects[selectedProject].projectName + "/header.png"} sx={{ width: "55%", height: "55%", borderRadius: "6px", border: "solid 1.5ch", borderColor: "text.secondary" }} /> 
+          <Box component="img" onMouseEnter={() => setCarouselHover(true)} onMouseLeave={() => setCarouselHover(false)} 
+            src={projects[selectedProject].projectName + "/header.png"} 
+            sx={{ width: "55%", height: "55%", borderRadius: "6px", border: "solid 1.5ch", borderColor: "text.secondary" }} /> 
           { carouselHover && <>
-            {selectedProject > 0 && <ArrowCircleLeftIcon onClick={prevProject} onMouseEnter={() => setCarouselHover(true)} sx={{ position: "absolute", top: "43.7%", left: "25%", fontSize: "50px", cursor: "pointer", color: getArrowColor(false), "&:hover": { color: getArrowColor(true) } }}/>}
-            {selectedProject < projects.length - 1 && <ArrowCircleRightIcon onClick={nextProject} onMouseEnter={() => setCarouselHover(true)} sx={{ position: "absolute", top: "43.7%", right: "25%", fontSize: "50px", cursor: "pointer", color: getArrowColor(false), "&:hover": { color: getArrowColor(true) } }}/>}
+            {selectedProject > 0 && <ArrowCircleLeftIcon onClick={prevProject} onMouseEnter={() => setCarouselHover(true)} 
+              sx={{ position: "absolute", top: "43.7%", left: "25%", fontSize: "50px", cursor: "pointer", color: getArrowColor(false), 
+              "&:hover": { color: getArrowColor(true) } }}/>}
+            {selectedProject < projects.length - 1 && <ArrowCircleRightIcon onClick={nextProject} onMouseEnter={() => setCarouselHover(true)} 
+              sx={{ position: "absolute", top: "43.7%", right: "25%", fontSize: "50px", cursor: "pointer", color: getArrowColor(false), 
+              "&:hover": { color: getArrowColor(true) } }}/>}
           </>}
 
           <Stack spacing={2} sx={{ mt: 2, width: "9%" }}>
@@ -108,7 +114,8 @@ const Projects = (props) => {
             <Typography sx={{ fontWeight: 600, width: "40%", ml: "calc(10% - 3ch)", color: "text.accent" }}> {projects[selectedProject].description} </Typography>
             
             <Stack spacing={2} sx={{ ml: "6ch", width: "40%", height: "40%", alignItems: "center" }}>
-              <Box component="img" src={projects[selectedProject].projectName + "/example" + examplePage + ".png"} sx={{ width: "100%", height: "100%", borderRadius: "6px" }} /> 
+              <Box component="img" src={projects[selectedProject].projectName + "/example" + examplePage + ".png"} 
+                sx={{ width: "100%", height: "100%", borderRadius: "6px" }} /> 
               <Stack spacing={2}>
                 <Pagination page={examplePage}
                   count={projects[selectedProject].previewCount}
