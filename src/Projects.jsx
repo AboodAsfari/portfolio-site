@@ -22,6 +22,11 @@ const Projects = (props) => {
   const [selectedProject, setSelectedProject] = React.useState(0);
   const [examplePage, setExamplePage] = React.useState(1);
 
+  projects.forEach((item, index) => {
+    const imageElement = new Image();
+    imageElement.src = item.projectName + "/header.png";  
+  })
+  
   return (
     <>
     <Stack sx={{ alignItems: "center", mt: "2ch", width: "100%" }}>
