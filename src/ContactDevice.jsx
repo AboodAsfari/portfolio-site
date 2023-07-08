@@ -9,7 +9,10 @@ import "./ContactDevice.css";
 
 const ContactDevice = (props) => {
   const {
-    showContent
+    showContent,
+    width,
+    mt,
+    mb
   } = props;
 
   const ContactMethods = {
@@ -44,9 +47,9 @@ const ContactDevice = (props) => {
   }
 
   return (      
-    <Box sx={{ width: "calc(45%)", height: "100%", display: "flex", justifyContent: "center" }}>
+    <Box sx={{ width: width, height: "100%", display: "flex", justifyContent: "center" }}>
       <Slide in={showContent} direction="left" timeout={{ enter: 500, exit: 200 }}>
-        <Stack sx={{ backgroundColor: "text.secondary", width: "360px", height: "592px", mt: "21ch", borderRadius: "6px 6px 60px 6px" }}>
+        <Stack sx={{ backgroundColor: "text.secondary", width: "360px", height: "592px", mt: mt, mb: mb, borderRadius: "6px 6px 60px 6px" }}>
           <Box sx={{ backgroundColor: "#606C5D", width: "90%", height: "40%", mx: "5%", mt: "10%", borderRadius: "6px 6px 30px 6px" }}> 
             <Box sx={{ position: "relative", backgroundColor: "#B5C99A", width: "70%", height: "80%", mx: "15%", mt: "7%" }}>
               <Box className="scanline" />

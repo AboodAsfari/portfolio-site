@@ -41,7 +41,7 @@ const Home = (props) => {
         </Slide>
       </Stack>
 
-      <ContactDevice showContent={showContent} />
+      <ContactDevice showContent={showContent} width={"45%"} mt={"21ch"} mb={"0ch"} />
     </Stack>
   );
 };
