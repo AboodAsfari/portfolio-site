@@ -32,4 +32,4 @@ jobs:
           role-to-assume: ${{ env.IAM_ROLE }}
           aws-region: ${{ env.AWS_REGION }}
       - name: Push to S3
-        run: aws s3 sync ./build s3://${{ env.BUCKET_NAME }} --delete --quiet
+        run: aws s3 sync ./build s3://${{ env.BUCKET_NAME }} --delete
