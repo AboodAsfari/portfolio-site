@@ -13,32 +13,34 @@ const Home = (props) => {
   } = props;
 
   const ContactMethods = {
-    GITHUB: { value: 0, link: "" },
-    LINKEDIN: { value: 1, link: "" },
-    EMAIL: { value: 2, link: "" }
+    GITHUB: { link: "https://github.com/AboodAsfari" },
+    LINKEDIN: { link: "https://www.linkedin.com/in/abdulrahman-asfari/" },
+    EMAIL: { link: "mailto:az.asfari@gmail.com" }
   };
-
-  const contactLinks = ["https://github.com/AboodAsfari", "https://www.linkedin.com/in/abdulrahman-asfari/", "mailto:az.asfari@gmail.com"];
+  ContactMethods.GITHUB.next = ContactMethods.LINKEDIN;
+  ContactMethods.GITHUB.prev = ContactMethods.EMAIL;
+  ContactMethods.LINKEDIN.next = ContactMethods.EMAIL;
+  ContactMethods.LINKEDIN.prev = ContactMethods.GITHUB;
+  ContactMethods.EMAIL.next = ContactMethods.GITHUB;
+  ContactMethods.EMAIL.prev = ContactMethods.LINKEDIN;
 
   const deviceCRTRef = React.useRef(null);
-  const [activeContact, setActiveContact] = React.useState(ContactMethods.GITHUB.value);
+  const [activeContact, setActiveContact] = React.useState(ContactMethods.GITHUB);
   const [invertDeviceSlide, setInvertDeviceSlide] = React.useState(false);
 
   const nextContact = () => {
     setInvertDeviceSlide(true);
     console.log(invertDeviceSlide);
-    setActiveContact(prev => {
-      if (prev >= 2) return 0;
-      else return prev + 1;
+    setActiveContact(old => {
+      // if (prev >= 2) return 0;
+      // else return prev + 1;
+      return old.next;
     });
   };
 
   const prevContact = () => {
     setInvertDeviceSlide(false);
-    setActiveContact(prev => {
-      if (prev <= 0) return 2;
-      else return prev - 1;
-    });
+    setActiveContact(old => old.prev);
   };
 
   const getSlideDir = (condition) => {
@@ -81,13 +83,13 @@ const Home = (props) => {
                 <Box className="scanline" />
                 <Box id={"crt"} sx={{ width: "100%", height: "100%" }} ref={deviceCRTRef}> 
                     <Box sx={{ display: "flex", justifyContent: "center", position: "relative" }}>
-                      <Slide in={activeContact === ContactMethods.GITHUB.value} direction={getSlideDir(activeContact === ContactMethods.GITHUB.value)} container={deviceCRTRef.current}>
+                      <Slide appear={false} in={activeContact.link === ContactMethods.GITHUB.link} direction={getSlideDir(activeContact.link === ContactMethods.GITHUB.link)} container={deviceCRTRef.current}>
                         <img alt="Github Logo" src="githublogo.png" width="48%" height="auto" style={{ marginTop: "18%", position: "absolute" }} />
                       </Slide>
-                      <Slide in={activeContact === ContactMethods.LINKEDIN.value} direction={getSlideDir(activeContact === ContactMethods.LINKEDIN.value)} container={deviceCRTRef.current}>
+                      <Slide in={activeContact.link === ContactMethods.LINKEDIN.link} direction={getSlideDir(activeContact.link === ContactMethods.LINKEDIN.link)} container={deviceCRTRef.current}>
                         <img alt="LinkedIn Logo" src="linkedinlogo.png" width="60%" height="auto" style={{ marginTop: "12%", position: "absolute" }} />
                       </Slide>
-                      <Slide in={activeContact === ContactMethods.EMAIL.value} direction={getSlideDir(activeContact === ContactMethods.EMAIL.value)} container={deviceCRTRef.current}>
+                      <Slide in={activeContact.link === ContactMethods.EMAIL.link} direction={getSlideDir(activeContact.link === ContactMethods.EMAIL.link)} container={deviceCRTRef.current}>
                         <img alt="LinkedIn Logo" src="emaillogo.png" width="48%" height="auto" style={{ marginTop: "18%", position: "absolute" }} />
                       </Slide>
                     </Box>
@@ -112,13 +114,13 @@ const Home = (props) => {
                 <Box sx={{ backgroundColor: "text.accent", width: "25px", height: "33px", borderRadius: "0 0 3px 3px", cursor: "pointer", "&:active": { background: "linear-gradient(180deg, rgba(103,93,80,1) 10%, rgba(77,69,60,1) 80%);" } }} />
               </Stack>
               <Stack sx={{ position: "relative"}}>
-                <Box onClick={() => window.open(contactLinks[activeContact], "_blank")}
+                <Box onClick={() => window.open(activeContact.link, "_blank")}
                   sx={{ borderRadius: "50%", backgroundColor: "#F1C376", width: "50px", height: "50px", alignSelf: "center", ml: "80px", mt: "45px", cursor: "pointer", "&:active": { background: "radial-gradient(circle, rgba(241,195,118,1) 50%, rgba(163,124,60,1) 100%);" } }} />
                 <Typography sx={{ position: "absolute", bottom: "-20px", right: 0, fontWeight: 600, transform: "rotate(-30deg)", color: "text.accent"  }}> B </Typography>
               </Stack>
               
               <Stack sx={{ position: "relative"}}>
-                <Box onClick={() => window.open(contactLinks[activeContact], "_blank")} 
+                <Box onClick={() => window.open(activeContact.link, "_blank")} 
                   sx={{ borderRadius: "50%", backgroundColor: "#F1C376", width: "50px", height: "50px", alignSelf: "center", ml: "20px", mb: "20px", cursor: "pointer", "&:active": { background: "radial-gradient(circle, rgba(241,195,118,1) 50%, rgba(163,124,60,1) 100%);" } }} />
                 <Typography sx={{ position: "absolute", bottom: "26px", right: "-2px", fontWeight: 600, transform: "rotate(-33deg)", color: "text.accent"  }}> A </Typography>
               </Stack>
