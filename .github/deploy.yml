@@ -27,10 +27,10 @@ jobs:
       - name: Build Project
         run: npm ci
         run: npm run build --if-present
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        role-to-assume: ${{ env.IAM_ROLE }}
-        aws-region: ${{ env.AWS_REGION }}
-    - name: Push to S3
-      run: aws s3 sync ./build s3://${{ env.BUCKET_NAME }} --delete --quiet
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ env.IAM_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Push to S3
+        run: aws s3 sync ./build s3://${{ env.BUCKET_NAME }} --delete --quiet
