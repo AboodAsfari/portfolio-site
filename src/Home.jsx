@@ -50,7 +50,7 @@ const Home = (props) => {
 
   return (
     <Stack direction="row" sx={{ width: "100%", height: "100%" }}>
-      <Stack sx={{ mt: "10ch", ml: "0.5%", width: "54.5%" }}>
+      <Stack sx={{ mt: "10ch", ml: "2%", width: "54.5%" }}>
         <Slide in={showContent} direction="right" timeout={{ enter: 300, exit: 200 }}>
           <Typography sx={{ fontSize: "30px", fontWeight: 700, color: "text.secondary" }}> Or Abood to keep it simple :) </Typography>
         </Slide>

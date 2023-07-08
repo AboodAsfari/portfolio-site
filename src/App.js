@@ -26,6 +26,7 @@ const App = () => {
   const [transitioning, setTransitioning] = React.useState(false);
   const [nameSize, setNameSize] = React.useState(104);
   const [nameTopOffset, setNameTopOffset] = React.useState(30);
+  const [nameBottomOffset, setNameBottomOffset] = React.useState(2);
   const nameGrow = React.useRef(true);
   const queuedTransition = React.useRef(null);
 
@@ -45,6 +46,12 @@ const App = () => {
     setNameTopOffset(oldOffset => { 
       if (!nameGrow.current && oldOffset > 10) return oldOffset - 1;
       else if (nameGrow.current && oldOffset < 30) return oldOffset + 1;
+      else return oldOffset; 
+    });
+
+    setNameBottomOffset(oldOffset => { 
+      if (!nameGrow.current && oldOffset > 0.6) return oldOffset - 0.07;
+      else if (nameGrow.current && oldOffset < 2) return oldOffset + 0.07;
       else return oldOffset; 
     });
 
@@ -76,7 +83,7 @@ const App = () => {
   return (
     <ThemeProvider theme={portfolioTheme}>
       <CssBaseline /> 
-      <Typography sx={{ fontSize: nameSize + "px", fontWeight: 700, color: "text.main", position: "absolute", top: nameTopOffset + "px", left: "0.5%", zIndex: 99999 }}> Abdulrahman Asfari </Typography>
+      <Typography sx={{ fontSize: nameSize + "px", fontWeight: 700, color: "text.main", position: "absolute", top: nameTopOffset + "px", left: nameBottomOffset + "%", zIndex: 99999 }}> Abdulrahman Asfari </Typography>
       <AppBar position="sticky" component="nav" sx={{ boxShadow: 0 }}>
           <Toolbar sx={{ display: "flex" }}>
             <Box sx={{ flexGrow: 1 }} />
