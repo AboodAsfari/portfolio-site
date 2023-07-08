@@ -5,15 +5,18 @@ import {
   Button, 
   CssBaseline, 
   Fade, 
+  IconButton, 
   Stack, 
   ThemeProvider, 
   Toolbar,
   Typography, 
 } from "@mui/material";
-import portfolioTheme from "./PortfolioTheme";
-import Home from "./Home";
-import Projects from "./Projects";
-import Skills from "./Skills";
+import portfolioTheme from "../PortfolioTheme";
+import Home from "../Desktop/Home";
+import Projects from "../Desktop/Projects";
+import Skills from "../Desktop/Skills";
+import MenuIcon from '@mui/icons-material/Menu';
+import "../Desktop/ContactDevice.css"
 
 const App = () => {
   const MainPages = {
@@ -24,7 +27,7 @@ const App = () => {
 
   const [activePage, setActivePage] = React.useState(MainPages.HOME);
   const [transitioning, setTransitioning] = React.useState(false);
-  const [nameSize, setNameSize] = React.useState(104);
+  const [nameSize, setNameSize] = React.useState(30);
   const [nameTopOffset, setNameTopOffset] = React.useState(30);
   const [nameBottomOffset, setNameBottomOffset] = React.useState(2);
   const nameGrow = React.useRef(true);
@@ -59,7 +62,7 @@ const App = () => {
   }, []);
 
   React.useEffect(() => {
-    requestAnimationFrame(updateName);
+    // requestAnimationFrame(updateName);
   }, [updateName]);
   
   const openProjects = () => {
@@ -83,19 +86,17 @@ const App = () => {
   return (
     <ThemeProvider theme={portfolioTheme}>
       <CssBaseline /> 
-      <Typography sx={{ fontSize: nameSize + "px", fontWeight: 700, color: "text.main", position: "absolute", top: nameTopOffset + "px", left: nameBottomOffset + "%", zIndex: 99999 }}> Abdulrahman Asfari </Typography>
-      <AppBar position="sticky" component="nav" sx={{ boxShadow: 0 }}>
+      <Typography sx={{ fontSize: "25px", fontWeight: 700, color: "text.main" }}> Abdulrahman Asfari </Typography>
+      <AppBar position="fixed" component="nav" sx={{ boxShadow: 0 }}>
           <Toolbar sx={{ display: "flex" }}>
+            <Typography sx={{ fontSize: "25px", fontWeight: 700, color: "text.main" }}> Abdulrahman Asfari </Typography>
             <Box sx={{ flexGrow: 1 }} />
-            <Stack spacing={1} direction={"row"} sx={{ justifyContent: "end" }}>
-              <NavButton action={openHome} label="Home" />
-              <NavButton action={openProjects} label="Projects" />
-              {/* <NavButton action={() => setActivePage(MainPages.SKILLS)} label="Skills" /> */}
-              <NavButton label="Skills" />
-            </Stack>
-          </Toolbar>
+            <IconButton sx={{ justifyContent: "end" }}>
+                <MenuIcon sx={{ fontSize: "30px" }} />
+            </IconButton>
+          </Toolbar>    
       </AppBar>
-      <Fade in={activePage === MainPages.HOME}>
+      {/* <Fade in={activePage === MainPages.HOME}>
         <Box>
           {activePage === MainPages.HOME && <Home showContent={!transitioning} />}
         </Box>
@@ -105,7 +106,7 @@ const App = () => {
           {activePage === MainPages.PROJECTS && <Projects showContent={!transitioning} />}
         </Box>
       </Fade>
-      {activePage === MainPages.SKILLS && <Skills />}
+      {activePage === MainPages.SKILLS && <Skills />} */}
     </ThemeProvider>
   );
 };

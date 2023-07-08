@@ -8,7 +8,7 @@ import {
   Stack, 
   Typography 
 } from "@mui/material";
-import projects from "./Project";
+import projects from "../Project";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
