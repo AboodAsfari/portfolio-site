@@ -41,10 +41,12 @@ const Projects = (props) => {
   }
 
   const nextProject = () => {
+    setExamplePage(1);
     setSelectedProject(old => old + 1);
   };
 
   const prevProject = () => {
+    setExamplePage(1);
     setSelectedProject(old => old - 1);
   };
   
