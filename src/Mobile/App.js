@@ -12,11 +12,10 @@ import {
   Typography, 
 } from "@mui/material";
 import portfolioTheme from "../PortfolioTheme";
-import Home from "../Desktop/Home";
+import Home from "./Home";
 import Projects from "../Desktop/Projects";
 import Skills from "../Desktop/Skills";
 import MenuIcon from '@mui/icons-material/Menu';
-import "../Desktop/ContactDevice.css"
 
 const App = () => {
   const MainPages = {
@@ -86,21 +85,22 @@ const App = () => {
   return (
     <ThemeProvider theme={portfolioTheme}>
       <CssBaseline /> 
-      <Typography sx={{ fontSize: "25px", fontWeight: 700, color: "text.main" }}> Abdulrahman Asfari </Typography>
-      <AppBar position="fixed" component="nav" sx={{ boxShadow: 0 }}>
-          <Toolbar sx={{ display: "flex" }}>
-            <Typography sx={{ fontSize: "25px", fontWeight: 700, color: "text.main" }}> Abdulrahman Asfari </Typography>
+      <AppBar position="sticky" component="nav" sx={{ boxShadow: 0, p: 0 }}>
+          <Toolbar sx={{ display: "flex", p: 0 }}>
+            <Typography sx={{ fontSize: "25px", fontWeight: 700, color: "text.main", ml: "20px" }}> Abdulrahman Asfari </Typography>
             <Box sx={{ flexGrow: 1 }} />
             <IconButton sx={{ justifyContent: "end" }}>
                 <MenuIcon sx={{ fontSize: "30px" }} />
             </IconButton>
           </Toolbar>    
       </AppBar>
-      {/* <Fade in={activePage === MainPages.HOME}>
+
+      <Fade in={activePage === MainPages.HOME}>
         <Box>
           {activePage === MainPages.HOME && <Home showContent={!transitioning} />}
         </Box>
       </Fade>
+      {/* 
       <Fade in={activePage === MainPages.PROJECTS}>
         <Box>
           {activePage === MainPages.PROJECTS && <Projects showContent={!transitioning} />}
