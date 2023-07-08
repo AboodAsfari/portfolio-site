@@ -30,12 +30,7 @@ const Home = (props) => {
 
   const nextContact = () => {
     setInvertDeviceSlide(true);
-    console.log(invertDeviceSlide);
-    setActiveContact(old => {
-      // if (prev >= 2) return 0;
-      // else return prev + 1;
-      return old.next;
-    });
+    setActiveContact(old => old.next);
   };
 
   const prevContact = () => {

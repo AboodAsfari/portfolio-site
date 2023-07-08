@@ -62,7 +62,7 @@ const Projects = (props) => {
       <Slide in={showContent} direction="right" timeout={{ enter: 900, exit: 200 }}>
         <Stack direction="row" spacing={2} sx={{ mt: "2ch" }}>
           {projects.map((item, index) => (
-            <IconButton color="red" key={item.projectName} onClick={() => setSelectedProject(index)}
+            <IconButton color="red" key={item.projectName} onClick={() => { setExamplePage(1); setSelectedProject(index); }}
               sx={{ backgroundColor: selectedProject === index ? "text.main" : "#A19882", 
               "&:hover": { backgroundColor: selectedProject === index ? "text.main" : "#c4b99f" } }} />
           ))}
