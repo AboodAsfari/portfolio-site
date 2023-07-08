@@ -85,10 +85,10 @@ const App = () => {
     <ThemeProvider theme={portfolioTheme}>
       <CssBaseline /> 
       <Typography sx={{ fontSize: nameSize + "px", fontWeight: 700, color: "text.main", position: "absolute", 
-        top: nameTopOffset + "px", left: nameBottomOffset + "%", zIndex: 99999 }}> 
+        top: nameTopOffset + "px", left: nameBottomOffset + "%", zIndex: 999999999 }}> 
         Abdulrahman Asfari 
       </Typography>
-      <AppBar position="sticky" component="nav" sx={{ boxShadow: 0 }}>
+      <AppBar position="sticky" component="nav" sx={{ boxShadow: 0, zIndex: 99999999 }}>
           <Toolbar sx={{ display: "flex" }}>
             <Box sx={{ flexGrow: 1 }} />
             <Stack spacing={1} direction={"row"} sx={{ justifyContent: "end" }}>
@@ -121,7 +121,7 @@ const NavButton = (props) => {
 
   return (
     <Button variant="text" disableRipple sx={{ fontSize: "18px", color: "text.main", textTransform: "none", fontWeight: 700, 
-      "&:hover": { backgroundColor: "background.default", textDecoration: "underline", textDecorationThickness: "3px" } }} 
+      "&:hover": { backgroundColor: "background.default", textDecoration: "underline", textDecorationThickness: "3px", zIndex: 9 } }} 
       onClick={action}> {label} </Button> 
   );
 };
