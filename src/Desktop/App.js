@@ -40,19 +40,19 @@ const App = () => {
       
       if (!nameGrow.current && oldSize > 24) return oldSize - 4;
       else if (nameGrow.current && oldSize < 104) return oldSize + 4; 
-      else return oldSize; 
+      return oldSize; 
     });
 
     setNameTopOffset(oldOffset => { 
       if (!nameGrow.current && oldOffset > 10) return oldOffset - 1;
       else if (nameGrow.current && oldOffset < 30) return oldOffset + 1;
-      else return oldOffset; 
+      return oldOffset; 
     });
 
     setNameBottomOffset(oldOffset => { 
       if (!nameGrow.current && oldOffset > 0.6) return oldOffset - 0.07;
       else if (nameGrow.current && oldOffset < 2) return oldOffset + 0.07;
-      else return oldOffset; 
+      return oldOffset; 
     });
 
     requestAnimationFrame(updateName);
@@ -63,7 +63,8 @@ const App = () => {
   }, [updateName]);
   
   const openProjects = () => {
-    if (activePage !== MainPages.HOME) setActivePage(MainPages.PROJECTS);
+    if (activePage === MainPages.PROJECTS) return;
+    else if (activePage !== MainPages.HOME) setActivePage(MainPages.PROJECTS);
     else {
       setTransitioning(true);
       queuedTransition.current = () => setActivePage(MainPages.PROJECTS); 
@@ -83,14 +84,16 @@ const App = () => {
   return (
     <ThemeProvider theme={portfolioTheme}>
       <CssBaseline /> 
-      <Typography sx={{ fontSize: nameSize + "px", fontWeight: 700, color: "text.main", position: "absolute", top: nameTopOffset + "px", left: nameBottomOffset + "%", zIndex: 99999 }}> Abdulrahman Asfari </Typography>
+      <Typography sx={{ fontSize: nameSize + "px", fontWeight: 700, color: "text.main", position: "absolute", 
+        top: nameTopOffset + "px", left: nameBottomOffset + "%", zIndex: 99999 }}> 
+        Abdulrahman Asfari 
+      </Typography>
       <AppBar position="sticky" component="nav" sx={{ boxShadow: 0 }}>
           <Toolbar sx={{ display: "flex" }}>
             <Box sx={{ flexGrow: 1 }} />
             <Stack spacing={1} direction={"row"} sx={{ justifyContent: "end" }}>
               <NavButton action={openHome} label="Home" />
               <NavButton action={openProjects} label="Projects" />
-              {/* <NavButton action={() => setActivePage(MainPages.SKILLS)} label="Skills" /> */}
               <NavButton label="Skills" />
             </Stack>
           </Toolbar>
